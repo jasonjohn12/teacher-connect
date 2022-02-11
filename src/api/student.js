@@ -1,19 +1,25 @@
-import axios from 'axios';
+import axios from "axios";
 
 const api = axios.create({
-    baseURL: 'https://localhost:5001/',
-    timeout: 1000,
+  baseURL: process.env.REACT_APP_BASE_URL,
+  timeout: 1000,
+});
+
+const apiUrl = "http://localhost:5000";
+
+export async function getStudents(token) {
+  return await api.get(`api/students`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
+}
 
-
-  const apiUrl = "http://localhost:5000";
-
-  export async function getStudents(token) {
-      console.log('asdf', token)
-    return await api.get(`api/students`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    })
-  }
-  
+export async function addStudent(token, student) {
+  return await api.post(`api/students`, student, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      ContentType: "application/json",
+    },
+  });
+}

@@ -11,18 +11,23 @@ const appReducer = (state, action) => {
         ...state,
       };
     case "SET_USER":
-      console.log("SETUSER", action.payload)
+      console.log("SETUSER", action.payload);
       return {
         ...state,
-        isAuthenticated:true,
+        isAuthenticated: true,
         user: action.payload,
-        isLoading: false
+        isLoading: false,
       };
-      case "SET_STUDENTS":
+    case "SET_STUDENTS":
       return {
         ...state,
-        students: action.payload
-      }
+        students: action.payload,
+      };
+    case "ADD_STUDENT":
+      return {
+        ...state,
+        students: [...state.students, action.payload],
+      };
 
     default:
       return state;

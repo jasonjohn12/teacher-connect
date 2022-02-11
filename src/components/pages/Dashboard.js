@@ -42,17 +42,13 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
-import Button from '@mui/material/Button'
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import { mainListItems, secondaryListItems } from "../listItems";
-import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import { ListItemText } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import ListItemButton from "@mui/material/ListItemButton";
 import { AppContext, DispatchContext } from "../../contexts/AppContext";
@@ -60,9 +56,6 @@ import { getStudents } from "../../api/student";
 import StudentTable from '../StudentTable'
 import AddStudentModal from "../AddStudentModal";
 
-// import Chart from './Chart';
-// import Deposits from './Deposits';
-// import Orders from './Orders';
 
 function Copyright(props) {
   return (
@@ -137,7 +130,6 @@ function DashboardContent() {
   const { students, user } = useContext(AppContext);
   const dispatch = useContext(DispatchContext);
   const getStudentsAsync = async () => {
-    console.log("token", user?.token);
     const students = await getStudents(user.token);
     console.log(students.data);
     dispatch({ type: "SET_STUDENTS", payload: students.data });
@@ -209,18 +201,12 @@ function DashboardContent() {
         </Toolbar>
         <Divider />
         <span >
-        {/* sx={{marginLeft: "auto", marginRight:"auto", marginTop:"25px"}}  */}
         <ListItemButton onClick={handleClickOpen}>
               <ListItemIcon>
                 <AddIcon />
               </ListItemIcon>
               <ListItemText primary="Add Student"/>
             </ListItemButton>
-        {/* <Button sx={{ display: { xs: 'none', sm: 'none', md:'block' } }}
-
-   size="small" variant="contained" onClick={handleClickOpen}>
-      Add Student
-    </Button> */}
         </span>
 
     <AddStudentModal {...{handleClickOpen,handleClose, showAddStudentModal}}/>
