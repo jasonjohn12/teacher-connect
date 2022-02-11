@@ -15,6 +15,9 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Header from "./components/Header";
 import LoginForm from "./components/LoginForm";
+import SignupForm from "./components/SignupForm";
+import Home from "./components/pages/Home";
+import { AppContext, AppContextProvider } from "./contexts/AppContext";
 
 // Define theme settings
 const light = {
@@ -41,36 +44,10 @@ const App = () => {
   return (
     <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
       <CssBaseline />
-      <Header {...{ isDarkTheme, changeTheme }} />
-      <LoginForm />
-      {/* <Container> */}
-      <div>
-        {/* <Box component="div"></Box> */}
-        {/* <Card> */}
-        {/* <CardHeader */}
-        {/* action= */}
-        {
-          // <FormGroup>
-          //   <FormControlLabel
-          //     control={
-          //       <Switch checked={isDarkTheme} onChange={changeTheme} />
-          //     }
-          //     label="Dark Theme"
-          //   />
-          // </FormGroup>
-        }
-        {/* /> */}
-        {/* <CardContent>
-            <Typography variant="h3" component="h3">
-              Kindacode.com
-            </Typography>
-            <Typography variant="body1">
-              Dark Mode is {isDarkTheme ? "On" : "Off"}
-            </Typography>
-          </CardContent> */}
-        {/* </Card> */}
-      </div>
-      {/* </Container> */}
+      {/* <Header {...{ isDarkTheme, changeTheme }} /> */}
+      <AppContextProvider>
+        <Home />
+      </AppContextProvider>
     </ThemeProvider>
   );
 };

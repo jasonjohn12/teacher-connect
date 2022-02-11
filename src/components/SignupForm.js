@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {
   Box,
   Button,
@@ -8,26 +8,18 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { loginUser } from "../api/auth";
-import { AppContext, DispatchContext } from "../contexts/AppContext";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useContext(DispatchContext)
-  const state = useContext(AppContext);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      dispatch({type:"SET_LOADING"})
-      const user = await loginUser({username, password})
-      //sessionStorage.setItem('token', user.data.token)
-      console.log('user', user)
-      dispatch({type: "SET_USER", payload: user.data})
-    } catch (error) {
-      
-    }
+    console.log(username);
+    console.log(password);
   };
   return (
     <>
@@ -49,9 +41,40 @@ const LoginForm = () => {
               }}
             >
               <Typography color="textPrimary" variant="h4">
-                Sign in
+                Sign Up
               </Typography>
             </Box>
+            <TextField
+              fullWidth
+              label="First Name"
+              onChange={(e) => setFirstName(e.target.value)}
+              value={firstName}
+              margin="normal"
+              name="firstName"
+              type="text"
+              variant="outlined"
+            />
+            <TextField
+              fullWidth
+              label="Last Name"
+              onChange={(e) => setLastName(e.target.value)}
+              value={lastName}
+              margin="normal"
+              name="email"
+              type="text"
+              variant="outlined"
+            />
+            <TextField
+              fullWidth
+              label="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              margin="normal"
+              name="email"
+              type="email"
+              variant="outlined"
+            />
+  
             <TextField
               fullWidth
               label="Username"
@@ -80,7 +103,7 @@ const LoginForm = () => {
                 type="submit"
                 variant="contained"
               >
-                Sign In Now
+                Sign Up
               </Button>
             </Box>
           </form>
