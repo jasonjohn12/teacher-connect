@@ -45,6 +45,7 @@ const App = () => {
     <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
       <CssBaseline />
       {/* <Header {...{ isDarkTheme, changeTheme }} /> */}
+      {/* <Header {...{ isDarkTheme, changeTheme }} /> */}
       <AppContextProvider>
         <Home />
       </AppContextProvider>
